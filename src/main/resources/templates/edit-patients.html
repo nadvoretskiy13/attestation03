@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать пациента</title>
+</head>
+<body>
+<h1>Редактировать пациента</h1>
+<form th:action="@{/patients/edit}" th:object="${editPatient}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <p><input type="text" th:field="*{firstName}" placeholder="Имя" required /></p>
+    <p><input type="text" th:field="*{lastName}" placeholder="Фамилия" required /></p>
+    <p><input type="text" th:field="*{passportNumber}" placeholder="Паспорт" required /></p>
+    <p><input type="text" th:field="*{phone}" placeholder="Телефон" required /></p>
+    <p><input type="email" th:field="*{email}" placeholder="Email" required /></p>
+    <p><input type="date" th:field="*{birthDate}" required /></p>
+    <button type="submit">Сохранить</button>
+</form>
+<p><a href="/patients">Назад к списку пациентов</a></p>
+</body>
+</html>
