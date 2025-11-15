@@ -9,6 +9,9 @@
         <module name="attestation03" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="attestation03" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

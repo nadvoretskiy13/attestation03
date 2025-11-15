@@ -16,7 +16,6 @@ public class PatientWebController {
         this.service = service;
     }
 
-    // Список пациентов + форма для добавления
     @GetMapping
     public String listPatients(Model model) {
         model.addAttribute("patients", service.listAll());
@@ -24,28 +23,24 @@ public class PatientWebController {
         return "patients";
     }
 
-    // Добавление нового пациента
     @PostMapping
     public String addPatient(@ModelAttribute("newPatient") Patient patient) {
         service.create(patient);
         return "redirect:/patients";
     }
 
-    // Удаление пациента (soft delete)
     @PostMapping("/delete/{id}")
     public String deletePatient(@PathVariable Long id) {
         service.softDelete(id);
         return "redirect:/patients";
     }
 
-    // Форма редактирования
     @GetMapping("/edit/{id}")
     public String editPatient(@PathVariable Long id, Model model) {
         service.get(id).ifPresent(patient -> model.addAttribute("editPatient", patient));
         return "edit-patient";
     }
 
-    // Сохранение изменений
     @PostMapping("/edit")
     public String updatePatient(@ModelAttribute("editPatient") Patient patient) {
         service.update(patient.getId(), patient);

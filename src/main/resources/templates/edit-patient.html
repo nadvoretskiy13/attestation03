@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать пациента</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+    <h1>Редактировать пациента</h1>
+    <nav>
+        <a href="/web/home">Главная</a> |
+        <a href="/web/patients">Пациенты</a>
+    </nav>
+</header>
+<main>
+    <form action="/patients/edit" method="post">
+        <input type="hidden" th:value="${editPatient.id}" name="id"/>
+        <label>Имя: <input type="text" th:value="${editPatient.name}" name="name" required></label>
+        <label>Возраст: <input type="number" th:value="${editPatient.age}" name="age" required></label>
+        <button type="submit">Сохранить</button>
+    </form>
+</main>
+</body>
+</html>

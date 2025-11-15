@@ -26,10 +26,11 @@ class PatientServiceIntegrationTest {
                 .phone("+70000000000")
                 .email("ivan@example.com")
                 .birthDate(LocalDate.of(1990,1,1))
+                .deleted(false)
                 .build();
         Patient saved = repo.save(p);
         List<Patient> all = repo.findByDeletedFalse();
         assertThat(all).isNotEmpty();
-        assertThat(all.get(0).getId()).isEqualTo(saved.getId());
+        assertThat(all).anyMatch(x -> x.getId().equals(saved.getId()));
     }
 }
