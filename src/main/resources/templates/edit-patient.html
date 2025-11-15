@@ -1,25 +1,51 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Редактировать пациента</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Редактирование пациента</title>
 </head>
 <body>
-<header>
-    <h1>Редактировать пациента</h1>
-    <nav>
-        <a href="/web/home">Главная</a> |
-        <a href="/web/patients">Пациенты</a>
-    </nav>
-</header>
-<main>
-    <form action="/patients/edit" method="post">
-        <input type="hidden" th:value="${editPatient.id}" name="id"/>
-        <label>Имя: <input type="text" th:value="${editPatient.name}" name="name" required></label>
-        <label>Возраст: <input type="number" th:value="${editPatient.age}" name="age" required></label>
-        <button type="submit">Сохранить</button>
-    </form>
-</main>
+
+<h2>Редактирование пациента</h2>
+
+<form th:action="@{/patients/update}" method="post">
+    <input type="hidden" name="id" th:value="${editPatient.id}" />
+
+    <label>Имя:
+        <input type="text" name="firstName" th:value="${editPatient.firstName}" required>
+    </label>
+    <br/><br/>
+
+    <label>Фамилия:
+        <input type="text" name="lastName" th:value="${editPatient.lastName}" required>
+    </label>
+    <br/><br/>
+
+    <label>Паспорт:
+        <input type="text" name="passportNumber" th:value="${editPatient.passportNumber}" required>
+    </label>
+    <br/><br/>
+
+    <label>Телефон:
+        <input type="text" name="phone" th:value="${editPatient.phone}" required>
+    </label>
+    <br/><br/>
+
+    <label>Email:
+        <input type="email" name="email" th:value="${editPatient.email}" required>
+    </label>
+    <br/><br/>
+
+    <label>Дата рождения:
+        <input type="date" name="birthDate" th:value="${editPatient.birthDate}" required>
+    </label>
+    <br/><br/>
+
+    <button type="submit">Сохранить</button>
+</form>
+
+<br>
+<a th:href="@{/patients}">Назад</a>
+
 </body>
 </html>
