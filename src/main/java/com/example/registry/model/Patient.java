@@ -1,10 +1,17 @@
 package com.example.registry.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "patients")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +25,4 @@ public class Patient {
     private String email;
 
     private boolean deleted = false;
-
-    public Patient() {}
-
-    // getters & setters
-    // ...
 }

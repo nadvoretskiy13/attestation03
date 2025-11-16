@@ -15,13 +15,15 @@ public class DataInitializer {
     CommandLineRunner init(PatientRepository repo) {
         return args -> {
             if (repo.count() == 0) {
-                Patient p1 = new Patient();
-                p1.setFirstName("Иван");
-                p1.setLastName("Иванов");
-                p1.setPassportNumber("AB123456");
-                p1.setPhone("+70000000000");
-                p1.setEmail("ivan@example.com");
-                p1.setBirthDate(LocalDate.of(1990,1,1));
+                Patient p1 = Patient.builder()
+                        .firstName("Иван")
+                        .lastName("Иванов")
+                        .passportNumber("AB123456")
+                        .phone("+70000000000")
+                        .email("ivan@example.com")
+                        .birthDate(LocalDate.of(1990,1,1))
+                        .deleted(false)
+                        .build();
                 repo.save(p1);
             }
         };
