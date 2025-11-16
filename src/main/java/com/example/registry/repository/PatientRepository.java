@@ -1,6 +1,6 @@
-package com.example.attestation03.repository;
+package com.example.registry.repository;
 
-import com.example.attestation03.model.Patient;
+import com.example.registry.model.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;

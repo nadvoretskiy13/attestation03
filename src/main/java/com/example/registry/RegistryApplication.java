@@ -1,11 +1,11 @@
-package com.example.attestation03;
+package com.example.registry;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Attestation03Application {
+public class RegistryApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Attestation03Application.class, args);
+        SpringApplication.run(RegistryApplication.class, args);
     }
 }

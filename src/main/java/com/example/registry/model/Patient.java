@@ -1,17 +1,10 @@
-package com.example.attestation03.model;
+package com.example.registry.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "patients")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +17,10 @@ public class Patient {
     private LocalDate birthDate;
     private String email;
 
-    // Soft delete flag
     private boolean deleted = false;
+
+    public Patient() {}
+
+    // getters & setters
+    // ...
 }

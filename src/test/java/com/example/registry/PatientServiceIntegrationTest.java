@@ -1,7 +1,7 @@
-package com.example.attestation03;
+package com.example.registry;
 
-import com.example.attestation03.model.Patient;
-import com.example.attestation03.repository.PatientRepository;
+import com.example.registry.model.Patient;
+import com.example.registry.repository.PatientRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
