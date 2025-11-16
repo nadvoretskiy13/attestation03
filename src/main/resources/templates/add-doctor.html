@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить доктора</title>
+</head>
+<body>
+
+<h2>Добавление доктора</h2>
+
+<form th:action="@{/doctors/create}" method="post">
+
+    <label>Имя:
+        <input type="text" name="firstName" required>
+    </label>
+    <br/><br/>
+
+    <label>Фамилия:
+        <input type="text" name="lastName" required>
+    </label>
+    <br/><br/>
+
+    <label>Специальность:
+        <input type="text" name="specialization" required>
+    </label>
+    <br/><br/>
+
+    <button type="submit">Создать</button>
+
+</form>
+
+<br>
+<a th:href="@{/doctors}">Назад</a>
+
+</body>
+</html>

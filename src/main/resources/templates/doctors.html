@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Врачи</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Доктора</title>
+</head>
 <body>
-<h1>Список врачей</h1>
-<table>
-    <thead><tr><th>ФИО</th><th>Спец.</th><th>Контакты</th></tr></thead>
-    <tbody>
-    <tr th:each="d : ${doctors}">
-        <td th:text="${d.lastName + ' ' + d.firstName}">ФИО</td>
-        <td th:text="${d.specialization}">Спец</td>
-        <td th:text="${d.phone + ' / ' + d.email}">Тел</td>
+
+<h2>Список докторов</h2>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Специальность</th>
+        <th>Действия</th>
     </tr>
-    </tbody>
+
+    <tr th:each="d : ${doctors}">
+        <td th:text="${d.id}"></td>
+        <td th:text="${d.firstName}"></td>
+        <td th:text="${d.lastName}"></td>
+        <td th:text="${d.specialization}"></td>
+
+        <td>
+            <a th:href="@{'/doctors/edit/' + ${d.id}}">Редактировать</a>
+            &nbsp;|&nbsp;
+            <a th:href="@{'/doctors/delete/' + ${d.id}}">Удалить</a>
+        </td>
+    </tr>
+
 </table>
-<p><a href="/patients">Пациенты</a></p>
+
+<br>
+<a th:href="@{/home}">На главную</a>
+
 </body>
 </html>

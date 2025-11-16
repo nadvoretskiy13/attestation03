@@ -1,21 +1,47 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Главная</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Пациенты</title>
 </head>
 <body>
-<header>
-    <h1>Добро пожаловать в медицинский портал</h1>
-    <nav>
-        <a href="/web/home">Главная</a> |
-        <a href="/web/patients">Пациенты</a> |
-        <a href="/web/doctors">Врачи</a>
-    </nav>
-</header>
-<main>
-    <p>Здесь вы можете просматривать список пациентов и врачей, а также добавлять новые записи.</p>
-</main>
+
+<h2>Список пациентов</h2>
+
+<a th:href="@{/patients/add}">Добавить пациента</a>
+<br/><br/>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Паспорт</th>
+        <th>Телефон</th>
+        <th>Email</th>
+        <th>Дата рождения</th>
+        <th>Действия</th>
+    </tr>
+
+    <tr th:each="p : ${patients}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.firstName}"></td>
+        <td th:text="${p.lastName}"></td>
+        <td th:text="${p.passportNumber}"></td>
+        <td th:text="${p.phone}"></td>
+        <td th:text="${p.email}"></td>
+        <td th:text="${p.birthDate}"></td>
+
+        <td>
+            <a th:href="@{'/patients/edit/' + ${p.id}}">Редактировать</a>
+            &nbsp;|&nbsp;
+            <a th:href="@{'/patients/delete/' + ${p.id}}">Удалить</a>
+        </td>
+    </tr>
+</table>
+
+<br>
+<a th:href="@{/home}">На главную</a>
+
 </body>
 </html>

@@ -1,21 +1,17 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Главная</title>
-    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<header>
-    <h1>Добро пожаловать в медицинский портал</h1>
-    <nav>
-        <a href="/web/home">Главная</a> |
-        <a href="/web/patients">Пациенты</a> |
-        <a href="/web/doctors">Врачи</a>
-    </nav>
-</header>
-<main>
-    <p>Здесь вы можете просматривать список пациентов и врачей, а также добавлять новые записи.</p>
-</main>
+
+<h2>Добро пожаловать в систему больницы</h2>
+
+<ul>
+    <li><a th:href="@{/patients}">Пациенты</a></li>
+    <li><a th:href="@{/doctors}">Доктора</a></li>
+</ul>
+
 </body>
 </html>

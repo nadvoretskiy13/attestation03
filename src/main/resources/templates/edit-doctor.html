@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать доктора</title>
+</head>
+<body>
+
+<h2>Редактирование доктора</h2>
+
+<form th:action="@{/doctors/update}" method="post">
+
+    <input type="hidden" name="id" th:value="${editDoctor.id}" />
+
+    <label>Имя:
+        <input type="text" name="firstName" th:value="${editDoctor.firstName}" required>
+    </label>
+    <br/><br/>
+
+    <label>Фамилия:
+        <input type="text" name="lastName" th:value="${editDoctor.lastName}" required>
+    </label>
+    <br/><br/>
+
+    <label>Специальность:
+        <input type="text" name="specialization" th:value="${editDoctor.specialization}" required>
+    </label>
+    <br/><br/>
+
+    <button type="submit">Сохранить изменения</button>
+
+</form>
+
+<br>
+<a th:href="@{/doctors}">Назад</a>
+
+</body>
+</html>
