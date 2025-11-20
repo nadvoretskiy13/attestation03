@@ -1,20 +1,41 @@
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <title>Регистратура</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
 <body>
-<header>
-    <h1>Добро пожаловать в регистратуру</h1>
-</header>
-<main>
-    <p>
-        <a href="/login">Войти</a> |
-        <a href="/patients">Пациенты</a> |
-        <a href="/swagger-ui.html">API (Swagger)</a>
-    </p>
-</main>
+<table class="table table-hover table-sm caption-top mt-3" layout:fragment="content">
+    <caption class="mb-3">
+        <div class="d-flex align-items-center flex-nowrap">
+            <h3 th:text="#{reception.patients}"></h3>
+            <a class="btn btn-outline-success ms-auto" th:text="#{reception.action.add}" th:href="@{/patients/add}">
+            </a>
+        </div>
+    </caption>
+    <thead>
+    <tr>
+        <th th:text="#{reception.patient.lastname}"></th>
+        <th th:text="#{reception.patient.firstname}"></th>
+        <th th:text="#{reception.patient.birthdate}"></th>
+        <th th:text="#{reception.patient.phone}"></th>
+        <th th:text="#{reception.patient.email}"></th>
+        <th th:text="#{reception.patient.passport}"></th>
+        <th class="min"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="align-middle" th:each="patient: ${patients}">
+        <td th:text="${patient.lastName}"></td>
+        <td th:text="${patient.firstName}"></td>
+        <td th:text="${patient.birthDate}"></td>
+        <td th:text="${patient.phone}"></td>
+        <td th:text="${patient.email}"></td>
+        <td th:text="${patient.passport}"></td>
+        <td class="pe-0 text-end min">
+            <div th:replace="~{fragment/actions :: actions(${patient})}"></div>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

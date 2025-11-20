@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="btn-group" role="group" th:fragment="actions(patient)">
+    <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color:forestgreen"
+            th:text="#{reception.actions}">
+    </button>
+    <div class="dropdown-menu dropdown-menu-end">
+        <a th:href="@{/patients/{id}/edit(id=${patient.id})}"
+           th:text="#{reception.action.edit}" class="dropdown-item" style="color:blue">
+        </a>
+        <form th:action="@{/patients/{id}/delete(id=${patient.id})}" method="post">
+            <button th:text="#{reception.action.delete}" class="dropdown-item" type="submit" style="color:red"></button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
