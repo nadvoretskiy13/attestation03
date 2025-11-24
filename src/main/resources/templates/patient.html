@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<body>
+<form layout:fragment="content" method="post" th:action="@{/patients/{mappingUri}(mappingUri=${mappingUri})}">
+    <table class="table caption-top mt-3 mx-auto w-auto" th:object="${patient}">
+        <caption>
+            <div class="d-flex align-items-center flex-nowrap">
+                <h3 class="text-nowrap" th:text="#{${action}}"></h3>
+            </div>
+        </caption>
+        <tbody>
+        <tr class="align-middle">
+            <th scope="row"><label for="lastName" th:text="#{reception.patient.lastname}"></label></th>
+            <td>
+                <input id="lastName" type="text" th:field="*{lastName}" class="form-control" required>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{{lastName}}"></small>
+            </td>
+        </tr>
+        <tr class="align-middle">
+            <th scope="row"><label for="firstName" th:text="#{reception.patient.firstname}"></label></th>
+            <td>
+                <input id="firstName" type="text" th:field="*{firstName}" class="form-control" required>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{{firstName}}"></small>
+            </td>
+        </tr>
+        <tr class="align-middle">
+            <th scope="row"><label for="birthDate" th:text="#{reception.patient.birthdate}"></label></th>
+            <td>
+                <input id="birthDate" type="date" th:field="*{birthDate}" class="form-control" required>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{{birthDate}}"></small>
+            </td>
+        </tr>
+        <tr class="align-middle">
+            <th scope="row"><label for="phone" th:text="#{reception.patient.phone}"></label></th>
+            <td>
+                <input id="phone" type="tel" th:field="*{phone}" class="form-control">
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{{phone}}"></small>
+            </td>
+        </tr>
+        <tr class="align-middle">
+            <th scope="row"><label for="email" th:text="#{reception.patient.email}"></label></th>
+            <td>
+                <input id="email" type="email" th:field="*{email}" class="form-control" required>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{{email}}"></small>
+            </td>
+        </tr>
+        <tr class="align-middle">
+            <th scope="row"><label for="passport" th:text="#{reception.patient.passport}"></label></th>
+            <td>
+                <input id="passport" type="text" th:field="*{passport}" class="form-control" required>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('passport')}" th:errors="*{{passport}}"></small>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-4 text-center">
+        <button id="submit" type="submit" class="btn btn-outline-danger me-3" th:text="#{reception.action.save}"></button>
+        <a class="btn btn-outline-secondary ms-3" th:href="@{/patients}" th:text="#{reception.cancel}"></a>
+    </div>
+</form>
+</body>
+</html>

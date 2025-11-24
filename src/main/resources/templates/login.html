@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}" th:lang="${#locale.language}" lang="en">
+<body>
+<div layout:fragment="content" class="m-auto form-max-w">
+    <div class="card border-success w-100 form-min-w">
+        <div class="card-header text-bg-secondary" th:text="#{reception.sign_in}"></div>
+        <div class="card-body">
+            <form th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="username" th:text="#{reception.user.username}"></label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="form-group mt-1">
+                    <label for="password" th:text="#{reception.user.password}"></label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="form-group mt-1" th:if="${param.error}">
+                    <small class="text-danger" th:text="#{reception.sign_in.fail}"></small>
+                </div>
+                <button type="submit" class="btn btn-outline-success w-100 mt-4" th:text="#{reception.sign_in}"></button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title th:text="#{reception.header}"></title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
+</head>
+<body>
+
+<header class="sticky-top">
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark" sec:authorize="authenticated">
+    <div class="container container-fluid flex-row d-flex flex-nowrap">
+      <div>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <a class="navbar-brand" style="color:green" th:href="@{/}" th:text="#{reception.header}"></a>
+        </div>
+      </div>
+
+      <div class="bg-dark me-0 mb-auto">
+        <div class="btn-group" role="group">
+          <span class="text-bg-dark align-content-center mx-1" th:text="${#authentication.name}"></span>
+          <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" style="color:forestgreen; min-width: auto">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                 class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+              <path fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+            <li>
+              <form th:action="@{/logout}" method="post">
+                <button class="dropdown-item" type="submit" th:text="#{reception.sign_out}"></button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-dark bg-dark" sec:authorize="!authenticated">
+    <div class="container container-fluid">
+      <a class="navbar-brand" style="color:green" th:href="@{/}" th:text="#{reception.header}"></a>
+    </div>
+  </nav>
+
+</header>
+
+<main class="container mt-4">
+  <div layout:fragment="content"></div>
+</main>
+
+</body>
+</html>
