@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  flyway:
+    enabled: false
+  datasource:
+    url: jdbc:h2:mem:test_db
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: trace
+    org:
+      springframework:
+        security: DEBUG

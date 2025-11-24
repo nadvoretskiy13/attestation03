@@ -1,0 +1,40 @@
+services:
+  hospital-db:
+    image: postgres:17.7-alpine3.22
+    restart: unless-stopped
+    container_name: hospital-db
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      PGPORT: ${PG_PORT}
+      POSTGRES_DB: hospital
+    ports:
+      - "5432:${PG_PORT}"
+    volumes:
+      - ./database/hospital:/docker-entrypoint-initdb.d:ro
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${PG_USER}", "-p", "${PG_PORT}", "-d", "hospital" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  reception-app:
+    build: .
+    image: reception:1.0.0
+    container_name: reception-app
+    depends_on:
+      hospital-db:
+        condition: service_healthy
+    ports:
+      - "8080:${SERVER_PORT}"
+    environment:
+      SERVER_PORT: ${SERVER_PORT}
+      DB_HOST: hospital-db
+      DB_PORT: ${PG_PORT}
+      DB_USER: ${PG_USER}
+      DB_PASSWORD: ${PG_PASSWORD}
+    restart: unless-stopped
+
+volumes:
+  pg-data:

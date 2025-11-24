@@ -1,0 +1,22 @@
+.form-max-w {
+    max-width: 450px;
+}
+
+.form-min-w {
+    min-width: 250px;
+}
+
+.btn {
+    min-width: 120px;
+}
+
+th.min, td.min {
+    width: 1%;
+    white-space: nowrap;
+}
+
+@media (min-width: 600px) {
+    table {
+        min-width: 550px;
+    }
+}
